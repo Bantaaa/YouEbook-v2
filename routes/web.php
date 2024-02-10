@@ -1,19 +1,32 @@
 <?php
+
+// use App\Http\Controllers\AuthController;
+// use App\Http\Controllers\BookController;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookReservationController;
+use App\Http\Controllers\ReservationController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CustomAuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', function () {
-    return view('auth');
-});
 
-Route::get('dashboard', [CustomAuthController::class, 'dashboard'])->name('dashboard');
-Route::get('login', [CustomAuthController::class, 'index'])->name('login');
-Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
-Route::get('register', [CustomAuthController::class, 'registration'])->name('register');
-Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom');
-Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
+
+// Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
+Route::get('/', [AuthController::class, 'auth'])->name('auth');
+// Route::post('/custom-login', [AuthController::class, 'customLogin'])->name('login.custom');
+Route::post('/register', [AuthController::class, 'signup'])->name('register');
+Route::post('/login', [AuthController::class, 'signin'])->name('login');
+// Route::post('/custom-registration', [AuthController::class, 'customRegistration'])->name('register.custom');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::resource('books', BookController::class);
+Route::get('/reservation/notifications', [BookReservationController::class, 'index'])->name('notifications');
+
+
+
+Route::get('/reservation/notifications', [ReservationController::class, 'notifications'])->name('notifications');
+Route::resource('book_reservations', BookReservationController::class);
+Route::resource('reservation', ReservationController::class);
