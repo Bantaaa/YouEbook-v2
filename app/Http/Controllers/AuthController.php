@@ -59,7 +59,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             // Authentication successful
-            return redirect()->route('book.index'); // Redirect to the intended page or your dashboard
+            return redirect()->route('books.index'); // Redirect to the intended page or your dashboard
         } else {
             // Authentication failed
             return redirect()->route('register');
@@ -70,7 +70,7 @@ class AuthController extends Controller
     {
         Auth::logout();
 
-        return redirect()->route('login'); // Redirect to your login page after logout
+        return redirect()->route('login'); // Redirect to your logout route after logout
     }
 
 }

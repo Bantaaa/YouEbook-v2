@@ -9,13 +9,6 @@ use Illuminate\Http\Response;
 
 class BookController extends Controller
 {
-
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $books= Book::all();
