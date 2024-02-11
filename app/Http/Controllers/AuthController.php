@@ -58,7 +58,15 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
+            $user = Auth::user();
             // Authentication successful
+            // session()->put('role', $user->role);
+            session()->put([
+                'role' => $user->role,
+                'name' => $user->name,
+                // Add more parameters as needed
+            ]);
+            // dd(session('role'));
             return redirect()->route('books.index'); // Redirect to the intended page or your dashboard
         } else {
             // Authentication failed
@@ -69,6 +77,7 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
+        session()->flush();
 
         return redirect()->route('login'); // Redirect to your logout route after logout
     }

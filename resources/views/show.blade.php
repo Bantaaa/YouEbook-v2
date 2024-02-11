@@ -5,7 +5,7 @@
         <img src="https://source.unsplash.com/random/800x800?sig=incrementingIdentifier"  alt="...">
         <div class="p-4">
             <h5 class="text-xl font-bold">{{ $book->title }}</h5>
-            <p class="text-gray-700">Price : {{ $book->prix }}</p>
+            <p class="text-gray-700">Price : £{{ $book->prix }}</p>
 
             <form action="{{ route('reservation.store') }}" method="POST" class="mt-4">
                 @csrf

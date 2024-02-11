@@ -33,12 +33,6 @@ class ReservationController extends Controller
         return view('reservations.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
 
 
      public function store(Request $request)
@@ -75,24 +69,14 @@ class ReservationController extends Controller
      }
 
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show($id)
     {
-        $reservation = Reservation::findOrFail($id);
+        $reservation = Reservation::all()->where(Auth::user()->id);
         return view('reservations.show', compact('reservation'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function edit($id)
     {
         $reservation = Reservation::findOrFail($id);
@@ -110,21 +94,7 @@ $reservations = Reservation::with('books')->where('user_id', $userId)->get();
         return view('notifications', compact('reservations'));
 
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function destroy($id)
     {
        
@@ -132,4 +102,5 @@ $reservations = Reservation::with('books')->where('user_id', $userId)->get();
         session()->flash('status', 'emprunte avec succes');
         return redirect()->route('notifications');
     }
+
 }

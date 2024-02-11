@@ -222,12 +222,14 @@ Alternatively if you want to just have a single hero
 			</a>
 
                     <div class="flex items-center" id="store-nav-content">
-
+                        @if(session('role') == '1')
                         <a class="pl-3 inline-block no-underline hover:text-black" href="{{ route('books.create') }}">
                             <svg class="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM12.75 9C12.75 8.58579 12.4142 8.25 12 8.25C11.5858 8.25 11.25 8.58579 11.25 9L11.25 11.25H9C8.58579 11.25 8.25 11.5858 8.25 12C8.25 12.4142 8.58579 12.75 9 12.75H11.25V15C11.25 15.4142 11.5858 15.75 12 15.75C12.4142 15.75 12.75 15.4142 12.75 15L12.75 12.75H15C15.4142 12.75 15.75 12.4142 15.75 12C15.75 11.5858 15.4142 11.25 15 11.25H12.75V9Z" fill="#1C274C"/>
                             </svg>
                         </a>
+                        @endif
+
 
                         <a class="pl-3 inline-block no-underline hover:text-black" href="{{ route('notifications') }}">
                             <svg class="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -241,21 +243,25 @@ Alternatively if you want to just have a single hero
             @forelse ($books as $book)
             <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
     <a href="{{ route('books.show', ['book' => $book->id]) }}">
-        <img class="hover:grow hover:shadow-lg" src="https://images.unsplash.com/photo-1555982105-d25af4182e4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80">
+        <img class="hover:grow hover:shadow-lg" src="https://cdn.discordapp.com/attachments/1159494088886849556/1206295289997303908/book_vector.png?ex=65db7d09&is=65c90809&hm=74e8cdae15701bac2e5b33ce86d11443e118706dfb8b3bdd4aaa69e5e700d801&">
         <div class="pt-3 flex items-center justify-between">
             <p class="">{{ $book->title }}</p>
             <div class="flex">
                 <a href="{{ route('books.show', ['book' => $book->id]) }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded mr-2">Reserve</a>
+                @if (session('role') == 1)
                 <a href="{{ route('books.edit', ['book' => $book->id]) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">Edit</a>
+                @endif
             </div>
         </div>
         <p class="pt-1 text-gray-900">£{{ $book->prix }}</p>
     </a>
+    @if (session('role') == 1)
     <form action="{{ route('books.destroy', ['book' => $book->id]) }}" method="POST">
         @csrf
         @method('DELETE')
         <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded mt-2">Delete</button>
     </form>
+    @endif
 </div>
             @empty
             <div class="col">

@@ -6,6 +6,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookReservationController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Middleware\admin;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -34,3 +35,17 @@ Route::get('/reservation/notifications', [BookReservationController::class, 'ind
 Route::get('/reservation/notifications', [ReservationController::class, 'notifications'])->name('notifications');
 Route::resource('book_reservations', BookReservationController::class);
 Route::resource('reservation', ReservationController::class);
+
+
+Route::middleware('auth')->group(function () {
+    // auth user
+    Route::resource('books', BookController::class);
+
+
+    Route::middleware(['admin'])->group(function () {
+        // admin
+        Route::resource('books/create', BookController::class);
+        
+
+    });
+});
