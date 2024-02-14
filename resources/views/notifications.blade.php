@@ -8,7 +8,7 @@
     <div class="col-md-4 mb-4">
       <div class="bg-white shadow rounded-lg p-4">
         <h5 class="text-xl font-bold mb-2">Reservation ID: {{ $reservation->id }}</h5>
-        <p class="text-gray-700">Quantity: {{ $reservation->quantite }}</p>
+        <p class="text-gray-700">Quantity: {{ $reservation->qte }}</p>
         <h6 class="text-lg font-semibold mb-3">Books:</h6>
         <ul class="list-none">
           @foreach ($reservation->books as $book)

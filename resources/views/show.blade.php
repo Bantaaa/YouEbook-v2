@@ -12,7 +12,7 @@
                 <div class="mb-4">
                     <input type="hidden" name="book_id" value="{{$book->id  }}" >
                     <label for="quantity" class="block mb-1 font-medium">Quantity:</label>
-                    <input type="number" class="w-full py-2 px-3 border border-gray-300 rounded focus:outline-none focus:border-blue-500" id="quantity" name="quantite" value="1" min="1">
+                    <input type="number" class="w-full py-2 px-3 border border-gray-300 rounded focus:outline-none focus:border-blue-500" id="quantity" name="qte" value="1" min="1">
                 </div>
                 <div class="mb-4">
                     <label for="date_recuperation" class="block mb-1 font-medium">Date de récupération:</label>

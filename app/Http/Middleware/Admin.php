@@ -8,11 +8,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class admin
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
     public function handle(Request $request, Closure $next): Response
     {
         if(auth()->check() && $this->isAdmin($request)) {
@@ -22,6 +17,6 @@ class admin
         return abort(403, 'Unauthorized'); 
     }
     protected function isAdmin($request) {
-        return $request->user()->role_id == '2';
+        return $request->user()->role_id == '1';
     }
 }

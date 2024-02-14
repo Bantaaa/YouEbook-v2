@@ -44,7 +44,7 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware(['admin'])->group(function () {
         // admin
-        Route::resource('books/create', BookController::class);
+        // Route::resource('books/create', BookController::class)->name('create', "books.create");
         
 
     });

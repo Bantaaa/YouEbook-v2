@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('title');
             $table->integer('prix');
             $table->text('description')->nullable();
-            $table->integer('quantite')->default(1);
+            $table->integer('qte')->default(1);
             $table->timestamps();
         });
     }

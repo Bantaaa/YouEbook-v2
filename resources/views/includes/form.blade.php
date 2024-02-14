@@ -18,7 +18,7 @@
       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
         Quantity
       </label>
-      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="qte" name="qte" value="{{ old('prix', $book->prix ?? null) }}" type="number" placeholder="Quantity">
+      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="qte" name="qte" value="{{ old('qte', $book->qte ?? null) }}" type="number" placeholder="Quantity">
       <p class="text-gray-600 text-xs italic">We have an unlimited stock !</p>
     </div>
   </div>

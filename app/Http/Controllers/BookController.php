@@ -43,31 +43,20 @@ class BookController extends Controller
         'qte' => 'required',
     ]);
 
-        $books = ['title','prix',"qte",`updated_at`, `created_at` ];
+        $books = ['title','prix','qte',`updated_at`, `created_at` ];
 
         $book = Book::create($request->only($books));
         session()->flash('status', 'book creer avec succes');
         return redirect()->route("books.index");
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show($id)
     {
         $book = Book::findOrFail($id);
         return view("show" , ["book" => $book]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $book = Book::findOrFail($id);
@@ -97,12 +86,7 @@ class BookController extends Controller
         return redirect()->route("books.index");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy(Request $request,$id)
     {
         // $book = Book::findOrFail($id);
@@ -111,6 +95,5 @@ class BookController extends Controller
         session()->flash('status', 'book supprimer avec succes');
         return redirect()->back();
     }
-
 
 }

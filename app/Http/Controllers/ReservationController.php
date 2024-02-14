@@ -8,6 +8,8 @@ use App\Models\Reservation;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\controller\books;
+use App\Models\Book;
 
 class ReservationController extends Controller
 {
@@ -38,17 +40,29 @@ class ReservationController extends Controller
      public function store(Request $request)
      {
          $request->validate([
-             'quantite' => 'required|integer|min:1',
+             'qte' => 'required|integer|min:1',
              'book_id' => 'required|exists:books,id',
              'date_rec' => 'required|date|after:now',
          ]);
 
          // Get the authenticated user's ID
          $userId = Auth::id();
+         
+         $book = Book::find($request->book_id);
+         $wantedqte= $request->qte;
+         $bookqte = $book->qte;
+         if($wantedqte > $bookqte)
+         {
+            return redirect()->route('notifications')
+                ->with('error', 'Not enough books in stock');
+         }
+
+
+
 
          // Create the reservation
          $reservation = [
-             'quantite' => $request->quantite,
+             'qte' => $request->qte,
              'user_id' => $userId,
              'date_rec' => $request->date_rec
          ];

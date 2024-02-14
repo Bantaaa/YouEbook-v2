@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
             
-            $table->string('quantite')->default(1);
+            $table->string('qte')->default(1);
             $table->timestamps();
         });
     }
